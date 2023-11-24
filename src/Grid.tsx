@@ -44,6 +44,8 @@ const NeoGrid = (): JSX.Element => {
       <h1>Near-Earth Object Overview</h1>
       <div className="ag-theme-alpine" style={{ height: 900, width: 1920 }}>
         <AgGridReact
+          // TODO: implement ag-grid-enterprise library for range selection to work
+          enableRangeSelection
           defaultColDef={{ sortable: true, unSortIcon: true, filter: true }}
           rowData={formattedData}
           columnDefs={columnDefs}
