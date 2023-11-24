@@ -1,6 +1,7 @@
 import { AgGridReact } from "ag-grid-react";
 import { ColDef } from "ag-grid-community";
 import { dateCompare, formatBaseDate } from "./utils/dates";
+import { formatAfirmation } from "./utils/formatters";
 
 import data from "./near-earth-asteroids.json";
 import "ag-grid-community/styles/ag-grid.css";
@@ -33,7 +34,7 @@ const columnDefs: ColDef[] = [
   { field: "q_au_2", headerName: "Q (au)", filter: "agNumberColumnFilter" },
   { field: "period_yr", headerName: "Period (yr)", filter: "agNumberColumnFilter" },
   { field: "i_deg", headerName: "Inclination (deg)", filter: "agNumberColumnFilter" },
-  { field: "pha", headerName: "Potentially Hazardous" },
+  { field: "pha", headerName: "Potentially Hazardous", valueFormatter: (params) => formatAfirmation(params.value) },
   { field: "orbit_class", headerName: "Orbit Class" },
 ];
 
