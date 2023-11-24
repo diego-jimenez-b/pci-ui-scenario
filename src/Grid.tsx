@@ -1,5 +1,6 @@
+import { useRef } from "react";
 import { AgGridReact } from "ag-grid-react";
-import { ColDef } from "ag-grid-community";
+import { ColDef, ColumnApi, GridApi } from "ag-grid-community";
 import { dateCompare, formatBaseDate } from "./utils/dates";
 import { formatAfirmation } from "./utils/formatters";
 
@@ -39,9 +40,24 @@ const columnDefs: ColDef[] = [
 ];
 
 const NeoGrid = (): JSX.Element => {
+  const gridRef = useRef<GridApi | null>(null);
+  const columnRef = useRef<ColumnApi | null>(null);
+
   return (
     <>
-      <h1>Near-Earth Object Overview</h1>
+      <div className="table-header">
+        <h1>Near-Earth Object Overview</h1>
+        <button
+          className="reset-button"
+          onClick={() => {
+            gridRef.current?.setFilterModel(null);
+            columnRef.current?.resetColumnState();
+          }}
+        >
+          Clear Filters and Sorters
+        </button>
+      </div>
+
       <div className="ag-theme-alpine" style={{ height: 900, width: 1920 }}>
         <AgGridReact
           // TODO: implement ag-grid-enterprise library for range selection to work
@@ -50,6 +66,10 @@ const NeoGrid = (): JSX.Element => {
           rowData={formattedData}
           columnDefs={columnDefs}
           rowGroupPanelShow={"always"}
+          onGridReady={(e) => {
+            gridRef.current = e.api;
+            columnRef.current = e.columnApi;
+          }}
         />
       </div>
     </>

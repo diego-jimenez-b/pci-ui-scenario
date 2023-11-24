@@ -2,3 +2,17 @@ h1 {
   font: bold 1.25rem sans-serif;
   margin: 20px 0;
 }
+
+.table-header {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.reset-button {
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
