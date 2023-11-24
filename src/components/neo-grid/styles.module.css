@@ -1,0 +1,13 @@
+.tableHeader {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.resetButton {
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
